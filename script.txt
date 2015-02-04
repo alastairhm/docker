@@ -1,0 +1,5 @@
+apt-get update && apt-get install docker.io -y
+alias dock='docker.io'
+dock pull wordpress && dock pull mysql
+dock run --name some-mysql -e MYSQL_ROOT_PASSWORD=root -d mysql
+dock run --name some-wordpress --link some-mysql:mysql -p 8080:80 -d wordpress
