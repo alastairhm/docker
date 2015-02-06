@@ -7,11 +7,16 @@ include stdlib
 #include build
 
 include docker
-docker::image { 'jenkins': }
-
-docker::run { 'some-jenkins':
-  image => 'jenkins',
-  ports => '8080:8080',
-  volumes => '/vagrant/jenkins',
-  use_name => true,
+class { 'dockerload' :
+  image_name => 'jenkins',
+  path => '/vagrant/jenkins.tar',
 }
+
+#    docker::image { 'jenkins': }
+
+#    docker::run { 'some-jenkins':
+#      image => 'jenkins',
+#      ports => '8080:8080',
+#      volumes => '/vagrant/jenkins',
+#      use_name => true,
+#    }
